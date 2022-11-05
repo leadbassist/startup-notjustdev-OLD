@@ -3,7 +3,7 @@ export default [{
     title: "Variable",
     icon: "https://images.vexels.com/media/users/3/127005/isolated/preview/59c28106827d58c1e9f0b8a1aab708f7-recycle-icon-05-svg.png",
     level: 1,
-    progress: 0,
+    progress: 0.35,
 
 }, {
     id: "2",
