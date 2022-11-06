@@ -32,7 +32,9 @@ const CircularProgress = (props: CircularProgressProps) => {
         {/* Progress Circle */}
         {progress > 0 && (
           <Circle
-            stroke={Colors.light.secondary}
+            stroke={
+              progress >= 1 ? Colors.light.primary : Colors.light.secondary
+            }
             fill="none"
             cx={size / 2}
             cy={size / 2}

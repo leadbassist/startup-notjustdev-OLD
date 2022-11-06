@@ -4,11 +4,13 @@ import {
   StyleSheet,
   Image,
   useWindowDimensions,
+  Pressable,
 } from "react-native";
 import React from "react";
 import Colors from "../../constants/Colors";
 import { Topic } from "../../types/models";
 import CircularProgress from "../CircularProgress/CircularProgress";
+import { useNavigation } from "@react-navigation/native";
 // import { Svg, Circle } from "react-native-svg";
 
 interface TopicNodeProps {
@@ -18,11 +20,20 @@ interface TopicNodeProps {
 
 const TopicNode = ({ topic, isDisabled = true }: TopicNodeProps) => {
   const { width } = useWindowDimensions();
+  const navigation = useNavigation();
 
   const itemWidth = width / 3 - 30;
 
+  const onPress = () => {
+    navigation.navigate("Topic", { id: topic.id });
+  };
+
   return (
-    <View style={[styles.container, { width: itemWidth }]}>
+    <Pressable
+      onPress={onPress}
+      disabled={isDisabled}
+      style={[styles.container, { width: itemWidth }]}
+    >
       {/*image */}
       <View style={styles.progress}>
         <CircularProgress
@@ -51,7 +62,7 @@ const TopicNode = ({ topic, isDisabled = true }: TopicNodeProps) => {
       </View>
 
       <Text style={styles.title}>{topic.title}</Text>
-    </View>
+    </Pressable>
   );
 };
 
