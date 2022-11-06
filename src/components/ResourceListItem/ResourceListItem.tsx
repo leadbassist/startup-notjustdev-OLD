@@ -62,7 +62,7 @@ const ResourceListItem = ({
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    marginVertical: 10,
+    marginBottom: 20,
     alignItems: "center",
   },
   indexContainer: {
