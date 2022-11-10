@@ -1,23 +1,30 @@
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import Colors from "../../constants/Colors";
 import ResourceListItem from "../../components/ResourceListItem";
 import topics from "../../../assets/data/topics";
 import { RootStackScreenProps } from "../../types/navigation";
 import Markdown from "react-native-markdown-display";
 import TopicSection from "./TopicSection";
+import CustomButton from "../../components/CustomButton";
 
 const TopicScreen = ({ route, navigation }: RootStackScreenProps<"Topic">) => {
   const topicId = route.params.id;
 
   const topic = topics.find((t) => t.id === topicId); // this will find the topic's "id"
 
-  if (topic) {
-    navigation.setOptions({ title: topic.title });
-  }
+  useEffect(() => {
+    if (topic) {
+      navigation.setOptions({ title: topic.title });
+    }
+  }, [topic]);
+
+  const onStartQuiz = () => {
+    navigation.navigate("Quiz", { id: "123" });
+  };
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <TopicSection title="Intro" display={!!topic?.description}>
         <Markdown>{topic?.description}</Markdown>
       </TopicSection>
@@ -48,7 +55,7 @@ const TopicScreen = ({ route, navigation }: RootStackScreenProps<"Topic">) => {
         ))}
       </TopicSection>
 
-      {/* <ResourceListItem /> */}
+      <CustomButton text={"Start Quiz"} onPress={onStartQuiz} />
     </ScrollView>
   );
 };
@@ -56,8 +63,8 @@ const TopicScreen = ({ route, navigation }: RootStackScreenProps<"Topic">) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.light.background,
-    flex: 1,
     padding: 10,
+    minHeight: "100%",
   },
 });
 

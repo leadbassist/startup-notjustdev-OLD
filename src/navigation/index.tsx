@@ -22,6 +22,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 import { RootStackParamList, RootTabParamList } from "../types/navigation";
 import LinkingConfiguration from "./LinkingConfiguration";
 import TopicScreen from "../screens/TopicScreen";
+import QuizScreen from "../screens/QuizScreen";
 
 export default function Navigation({
   colorScheme,
@@ -46,13 +47,14 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Quiz">
       <Stack.Screen
         name="Root"
         component={BottomTabNavigator}
         options={{ headerShown: false }}
       />
       <Stack.Screen name="Topic" component={TopicScreen} />
+      <Stack.Screen name="Quiz" component={QuizScreen} />
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}
