@@ -48,7 +48,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Quiz">
+    <Stack.Navigator initialRouteName="Root">
       <Stack.Screen
         name="Root"
         component={BottomTabNavigator}

@@ -7,11 +7,14 @@ import { RootStackScreenProps } from "../../types/navigation";
 import Markdown from "react-native-markdown-display";
 import TopicSection from "./TopicSection";
 import CustomButton from "../../components/CustomButton";
+import useApplyHeaderWorkaround from "../../hooks/useApplyHeaderWorkaround";
 
 const TopicScreen = ({ route, navigation }: RootStackScreenProps<"Topic">) => {
   const topicId = route.params.id;
 
   const topic = topics.find((t) => t.id === topicId); // this will find the topic's "id"
+
+  useApplyHeaderWorkaround(navigation.setOptions);
 
   useEffect(() => {
     if (topic) {
@@ -64,7 +67,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.light.background,
     padding: 10,
-    minHeight: "100%",
+    flexGrow: 1,
   },
 });
 

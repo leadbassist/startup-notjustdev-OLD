@@ -6,6 +6,7 @@ import wrongTick from "../../../assets/images/wrongtick.png";
 import Colors from "../../constants/Colors";
 import CustomButton from "../../components/CustomButton";
 import Navigation from "../../navigation";
+import useApplyHeaderWorkaround from "../../hooks/useApplyHeaderWorkaround";
 
 const happyText = "Woohoo! You passed the quiz!";
 const sadText = "Oh no! Try again. Practice makes perfect!";
@@ -24,6 +25,8 @@ const QuizEndScreen = ({
   const onPress = () => {
     navigation.navigate("Root");
   };
+
+  useApplyHeaderWorkaround(navigation.setOptions);
 
   return (
     <View style={styles.container}>

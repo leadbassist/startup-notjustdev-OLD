@@ -7,6 +7,8 @@ import QuizChoices from "../../components/QuizChoices";
 import CustomButton from "../../components/CustomButton";
 import ProgressBar from "../../components/ProgressBar";
 import { RootStackScreenProps } from "../../types/navigation";
+import Animated, { SlideInDown, SlideInUp } from "react-native-reanimated";
+import useApplyHeaderWorkaround from "../../hooks/useApplyHeaderWorkaround";
 
 // const question = quiz[0];
 
@@ -19,6 +21,8 @@ const QuizScreen = ({ navigation }: RootStackScreenProps<"Quiz">) => {
   >(undefined);
 
   const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState(0);
+
+  useApplyHeaderWorkaround(navigation.setOptions);
 
   useEffect(() => {
     if (questionIndex === quiz.length) {
@@ -114,16 +118,22 @@ const QuizScreen = ({ navigation }: RootStackScreenProps<"Quiz">) => {
         />
       </ScrollView>
       {answeredCorrectly === true && (
-        <View style={[styles.answerBox, styles.correctAnswerBox]}>
+        <Animated.View
+          entering={SlideInDown.duration(1000)}
+          style={[styles.answerBox, styles.correctAnswerBox]}
+        >
           <Text style={styles.correctTitle}>Continue</Text>
           <CustomButton text="Continue" onPress={onContinue} />
-        </View>
+        </Animated.View>
       )}
       {answeredCorrectly === false && (
-        <View style={[styles.answerBox, styles.wrongAnswerBox]}>
+        <Animated.View
+          entering={SlideInDown.duration(1000)}
+          style={[styles.answerBox, styles.wrongAnswerBox]}
+        >
           <Text style={styles.wrongTitle}>Wrong</Text>
           <CustomButton text="Continue" onPress={onContinue} />
-        </View>
+        </Animated.View>
       )}
     </>
   );
