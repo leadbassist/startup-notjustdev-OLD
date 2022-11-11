@@ -6,10 +6,11 @@ import Markdown from "react-native-markdown-display";
 import QuizChoices from "../../components/QuizChoices";
 import CustomButton from "../../components/CustomButton";
 import ProgressBar from "../../components/ProgressBar";
+import { RootStackScreenProps } from "../../types/navigation";
 
 // const question = quiz[0];
 
-const QuizScreen = () => {
+const QuizScreen = ({ navigation }: RootStackScreenProps<"Quiz">) => {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [question, setQuestion] = useState(quiz[questionIndex]);
   const [selectedAnswer, setSelectedAnswer] = useState<string[]>([]);
@@ -22,10 +23,15 @@ const QuizScreen = () => {
   useEffect(() => {
     if (questionIndex === quiz.length) {
       //navigate to results screen
-      Alert.alert(
-        "Quiz finished",
-        `You answered ${numberOfCorrectAnswers} out of ${quiz.length} questions correctly`
-      );
+      navigation.navigate("QuizEndScreen", {
+        nofQuestions: quiz.length,
+        nofCorrectAnswers: numberOfCorrectAnswers,
+      });
+
+      // Alert.alert(
+      //   "Quiz finished",
+      //   `You answered ${numberOfCorrectAnswers} out of ${quiz.length} questions correctly`
+      // );
       return;
     }
 

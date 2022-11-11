@@ -23,6 +23,7 @@ import { RootStackParamList, RootTabParamList } from "../types/navigation";
 import LinkingConfiguration from "./LinkingConfiguration";
 import TopicScreen from "../screens/TopicScreen";
 import QuizScreen from "../screens/QuizScreen";
+import QuizEndScreen from "../screens/QuizEndScreen";
 
 export default function Navigation({
   colorScheme,
@@ -55,6 +56,11 @@ function RootNavigator() {
       />
       <Stack.Screen name="Topic" component={TopicScreen} />
       <Stack.Screen name="Quiz" component={QuizScreen} />
+      <Stack.Screen
+        name="QuizEndScreen"
+        component={QuizEndScreen}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}
